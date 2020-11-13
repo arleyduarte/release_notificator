@@ -8,12 +8,12 @@ function readReadme() {
   let issues = [];
   let version;
   lineReader.eachLine(path, function (line) {
-    //console.log(line_counter, line);
+    console.log(line_counter, line);
     if (line_counter === 2) {
       version = line.replace("#", "").trim();
     }
 
-    if (line_counter > 7) {
+    if (line_counter > 4) {
       if (line.startsWith("#")) {
         putIssuesToTemplate(issues, version);
         return false;
@@ -57,9 +57,9 @@ function sendEmail(html) {
     },
 
     from: "arley.duarte@zyght.com",
-    //to: "arleymauricio@gmail.com",
+    // to: "arleymauricio@gmail.com",
     to:
-      "arleymauricio@gmail.com,magnolia.izarra@zyght.com,greidy.melendez@zyght.com,55e7153a.zyght.com@amer.teams.ms",
+      "arleymauricio@gmail.com,9f088c34.zyght.onmicrosoft.com@amer.teams.ms,magnolia.izarra@zyght.com,greidy.melendez@zyght.com,55e7153a.zyght.com@amer.teams.ms",
     subject: "Nueva versión del App Zyght!",
     html: html,
     text: "",
