@@ -1,8 +1,11 @@
 var fs = require("fs");
 
 readReadme();
+var subject = "Nueva versión del App de Zyght!";
 function readReadme() {
-  const path = "/Users/arley/Documents/zyght/ZyghtReactNative/README.md";
+  const path = getReadmePath();
+  console.log("path", path);
+
   const lineReader = require("line-reader");
   let line_counter = 0;
   let issues = [];
@@ -32,9 +35,37 @@ function putIssuesToTemplate(issues, version) {
   let path = __dirname + "/template.html";
   let template = fs.readFileSync(path, { encoding: "utf-8" });
   var htmlVersion = template.replace("VERSION", version);
-  var html = htmlVersion.replace("ISSUES", getIssuesList(issues));
 
+  if (isApi()) {
+    htmlVersion = htmlVersion.replace("App", "API .NET");
+    subject = "Nueva versión del App del Api Zyght!";
+    htmlVersion = htmlVersion.replace("COMMENTS", "En los clientes");
+  } else {
+    htmlVersion = htmlVersion.replace(
+      "COMMENTS",
+      "Para los tester iOS y Android  <br />(Versión de iOS va a estar disponible en TestFlight en las próximas horas)"
+    );
+  }
+
+  var html = htmlVersion.replace("ISSUES", getIssuesList(issues));
   sendEmail(html);
+}
+
+function getReadmePath() {
+  if (isApi()) {
+    // return "./readmeapi.md";
+    return "C:/Users/zyghtadmin/source/repos/zyghtapi/README.md";
+  }
+
+  return "/Users/arley/Documents/zyght/ZyghtReactNative/README.md";
+}
+function isApi() {
+  var myArgs = process.argv.slice(2);
+  if (myArgs[0] === "api") {
+    return true;
+  }
+
+  return false;
 }
 
 function getIssuesList(issues) {
@@ -57,10 +88,10 @@ function sendEmail(html) {
     },
 
     from: "arley.duarte@zyght.com",
-    // to: "arleymauricio@gmail.com",
-    to:
-      "arleymauricio@gmail.com,9f088c34.zyght.onmicrosoft.com@amer.teams.ms,magnolia.izarra@zyght.com,greidy.melendez@zyght.com,55e7153a.zyght.com@amer.teams.ms",
-    subject: "Nueva versión del App Zyght!",
+    to: "arleymauricio@gmail.com",
+    // to:
+    //  "arleymauricio@gmail.com,9f088c34.zyght.onmicrosoft.com@amer.teams.ms,magnolia.izarra@zyght.com,greidy.melendez@zyght.com,55e7153a.zyght.com@amer.teams.ms",
+    subject: subject,
     html: html,
     text: "",
     onError: (e) => console.log(e),
