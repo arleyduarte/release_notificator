@@ -10,6 +10,8 @@ function readReadme() {
   let line_counter = 0;
   let issues = [];
   let version;
+
+  console.log("version", path);
   lineReader.eachLine(path, function (line) {
     console.log(line_counter, line);
     if (line_counter === 2) {
@@ -52,9 +54,22 @@ function putIssuesToTemplate(issues, version) {
 }
 
 function getReadmePath() {
+  console.log("getReadmePath");
   if (isApi()) {
-    // return "./readmeapi.md";
-    return "C:/Users/zyghtadmin/source/repos/zyghtapi/README.md";
+ 
+    var path2 =  "C:\\Users\\zyghtadmin\\source\\repos\\zyghtapi\\README.md";
+
+    try {
+      if (fs.existsSync(path2)) {
+        console.log("Exist")
+
+        return path2;
+      }
+    } catch(err) {
+      console.error(err)
+    }
+
+
   }
 
   return "/Users/arley/Documents/zyght/ZyghtReactNative/README.md";
