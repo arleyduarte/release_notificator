@@ -103,9 +103,9 @@ function sendEmail(html) {
     },
 
     from: "arley.duarte@zyght.com",
-    to: "arleymauricio@gmail.com",
-    // to:
-    //  "arleymauricio@gmail.com,9f088c34.zyght.onmicrosoft.com@amer.teams.ms,magnolia.izarra@zyght.com,greidy.melendez@zyght.com,55e7153a.zyght.com@amer.teams.ms",
+    //to: "arleymauricio@gmail.com",
+    to:
+      "arleymauricio@gmail.com,9f088c34.zyght.onmicrosoft.com@amer.teams.ms,magnolia.izarra@zyght.com,greidy.melendez@zyght.com,55e7153a.zyght.com@amer.teams.ms",
     subject: subject,
     html: html,
     text: "",
