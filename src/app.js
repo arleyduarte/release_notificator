@@ -69,7 +69,7 @@ function getReadmePath() {
     }
   }
 
-  return '/Users/arley/Documents/zyght/ZyghtReactNative/README.md';
+  return '/Users/arley/Documents/ZyghtReactNative/README.md';
 }
 function isApi() {
   var myArgs = process.argv.slice(2);
